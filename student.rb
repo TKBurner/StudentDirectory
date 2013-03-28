@@ -12,14 +12,38 @@ class Person
       Instructor.new
     end
   end
+
+  def get_person_info
+    print "What is your name? "
+    self.name = gets.strip.chomp
+    print "What is your email? "
+    self.email = gets.strip.chomp
+    print "Favorite color: "
+    self.color = gets.strip.chomp
+    print "What is your favorite band? "
+    self.music = gets.strip.chomp
+    print "If you could go on a vacation anywhere, where would you go? "
+    self.place = gets.strip.chomp
+  end
 end
 
 class Student < Person
   attr_accessor :reason_for_joining
+
+  def get_person_info
+    self.get_person_info
+    print "Why did you join this class? "
+    self.reason_for_joining = gets.strip.chomp 
+  end
 end
 
 class Instructor < Person
   attr_accessor :type
+  def get_person_info
+    super
+    print "What sort of instructor are you? "
+    self.type = gets.strip.chomp
+  end
 end
 
 @directory = ""
@@ -34,27 +58,8 @@ while ((input = gets.strip.chomp) != 'q') do
   person = nil
   
   person = Person.create_person(input)
-  print "What is your name? "
-  person.name = gets.strip.chomp
-  print "What is your email? "
-  person.email = gets.strip.chomp
-  print "Favorite color: "
-  person.color = gets.strip.chomp
-  print "What is your favorite band? "
-  person.music = gets.strip.chomp
-  print "If you could go on a vacation anywhere, where would you go? "
-  person.place = gets.strip.chomp
+  person.get_person_info
 
-  case input
-  when 'Student'  
-    print "Why did you join this class? "
-    person.reason_for_joining = gets.strip.chomp  
-
-    
-  when 'Instructor'
-    print "What sort of instructor are you? "
-    person.type = gets.strip.chomp
-  end
   
   # Append this to our yaml file
   @directory += person.to_yaml
