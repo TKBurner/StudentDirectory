@@ -4,6 +4,10 @@ require 'yaml'
 class Person
   attr_accessor :name, :email, :github_user, :twitter, :fun_fact, :music, :place, :color
 
+  def initialize
+    self.get_person_info
+  end
+
   def self.create_person(type)
     case type
     when "Student"
@@ -31,7 +35,7 @@ class Student < Person
   attr_accessor :reason_for_joining
 
   def get_person_info
-    self.get_person_info
+    super
     print "Why did you join this class? "
     self.reason_for_joining = gets.strip.chomp 
   end
@@ -55,10 +59,8 @@ while ((input = gets.strip.chomp) != 'q') do
     print "Enter Student or Instructor: "
     next
   end
-  person = nil
   
   person = Person.create_person(input)
-  person.get_person_info
 
   
   # Append this to our yaml file

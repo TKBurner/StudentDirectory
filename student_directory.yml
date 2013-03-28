@@ -19,3 +19,17 @@ color: dsf
 music: asdf
 place: sadf
 type: sdf
+--- !ruby/object:Student
+name: Todd
+email: ts
+color: adf
+music: ga
+place: d
+reason_for_joining: s
+--- !ruby/object:Instructor
+name: as
+email: dg
+color: gs
+music: ds
+place: as
+type: d
